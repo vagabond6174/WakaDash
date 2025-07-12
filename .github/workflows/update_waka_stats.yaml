@@ -32,6 +32,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git pull --rebase --autostash
           git add lang_stats.svg
           git diff --cached --quiet || git commit -m "Update lang_stats.svg"
           git push
