@@ -2,21 +2,12 @@
 
 **WakaDash** - a tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistics and generates a clean horizontal bar chart (`lang_stats.svg`). You can embed this visual breakdown anywhere - from your GitHub profile README to a personal portfolio.
 
-## Preview
 
 <p align="center">
   <img src="lang_stats.svg" alt="WakaTime Language Usage Chart" width="500">
 </p>
 
 
-##  Features
-
-- ✅ Automatically fetches your coding stats using WakaTime API
-- ✅ GitHub Actions workflow to auto-update chart daily
-- 🔐 Uses GitHub Secrets for secure API key management
-
-
----
 
 ##  Use This in Your Own Profile (Fork & Go!) 🍴
 
@@ -50,6 +41,7 @@ Replace `<your-username>` with your user-name.
 
 ```md
 ![WakaTime Stats](https://raw.githubusercontent.com/<your-username>/WakaDash/main/lang_stats.svg)
+
 ```
 
 ✅ That's it! Every day your chart will auto-update with your latest WakaTime stats.
