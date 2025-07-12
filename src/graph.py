@@ -17,12 +17,12 @@ def plot_language_usage(
 
     bars = ax.barh(y_pos, percents, color=colors)
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(langs, color=text_color)
+    ax.set_yticklabels(langs, color=text_color, fontdict= {'fontsize' : 13})
     ax.invert_yaxis()
     ax.set_title(
         f"Languages : {start} → {end}  -  {time_spent}",
         color=text_color,
-        fontdict={"fontsize": 12},
+        fontdict={"fontsize": 13},
     )
 
     for spine in ax.spines.values():
@@ -38,7 +38,7 @@ def plot_language_usage(
             bar.get_y() + bar.get_height() / 2,
             f"{labels[i]} ({percents[i]:.2f}%)",
             va="center",
-            fontsize=10,
+            fontsize=12,
             color=annotation_color,
         )
 
