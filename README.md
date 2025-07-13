@@ -2,21 +2,32 @@
 
 ## WakaDash
 
-Tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistics and generates a charts (`lang_stats.png`). You can embed this visual breakdown anywhere - from your GitHub profile README to a personal portfolio.
+Tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistics and generates a charts and badges. You can embed this visual breakdown anywhere - from your GitHub profile README to a personal portfolio.
 
+
+
+## Weekly language stats
 
 <p align="center">
   <img src="lang_stats.png" alt="WakaTime Language Usage Chart" width="600">
 </p>
 
+## Daily usage
 
 <p align="center">
   <img src="day_wise_stats.png" alt="WakaTime Language Usage Chart" width="1000">
 </p>
 
 
+## Wakatime badges
 
-##  Use This in Your Own Profile (Fork & Go!) 🍴
+<img src="daily_avg_badge.svg" alt="WakaTime Language Usage Chart" width="300px">
+
+<img src="best_badge.svg" alt="WakaTime Language Usage Chart" width="450px">
+
+---
+
+## 🍱 Use This in Your Own Profile (Fork & Go!) 🍴
 
 You can use WakaDash to show your own coding activity by just forking this repo and connecting your WakaTime account. Here's how:
 
@@ -53,7 +64,8 @@ or you can run it manually by clicking here.
 
 ### Step 5: Show It in Your GitHub Profile
 
-In your Profile `Readme.md`, paste this:
+
+For language stats, in your Profile `Readme.md`, paste this:
 
 Replace `<your-username>` with your user-name.
 
