@@ -2,11 +2,11 @@
 
 ## WakaDash
 
-Tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistics and generates a charts (`lang_stats.svg`). You can embed this visual breakdown anywhere - from your GitHub profile README to a personal portfolio.
+Tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistics and generates a charts (`lang_stats.png`). You can embed this visual breakdown anywhere - from your GitHub profile README to a personal portfolio.
 
 
 <p align="center">
-  <img src="lang_stats.svg" alt="WakaTime Language Usage Chart" width="500">
+  <img src="lang_stats.png" alt="WakaTime Language Usage Chart" width="500">
 </p>
 
 
@@ -40,7 +40,7 @@ Click the "Fork" button in the top right of this page and fork it to your accoun
 <img width="756" height="462" alt="image" src="https://github.com/user-attachments/assets/806885c2-dbeb-4118-887e-17eb286ea649" />
 
 
-4. The action will now run automatically once per day, and generate a new lang_stats.svg
+4. The action will now run automatically once per day, and generate a new lang_stats.png
 or you can run it manually by clicking here.
 
 <img width="756" height="462" alt="image" src="https://github.com/user-attachments/assets/269c8af0-861c-4ebf-a412-de6d376e7c0a" />
@@ -53,7 +53,7 @@ In your Profile `Readme.md`, paste this:
 Replace `<your-username>` with your user-name.
 
 ```md
-![WakaTime Stats](https://raw.githubusercontent.com/<your-username>/WakaDash/main/lang_stats.svg)
+![WakaTime Stats](https://raw.githubusercontent.com/<your-username>/WakaDash/main/lang_stats.png)
 
 ```
 

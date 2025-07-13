@@ -4,7 +4,7 @@ import pandas as pd
 from matplotlib.patches import FancyBboxPatch
 
 def plot_language_usage(
-    start, end, time_spent, language_data, filename="lang_stats.svg"
+    start, end, time_spent, language_data, filename="lang_stats.png"
 ):
     label_color = "#757A7F"       # Y-axis language names
     annotation_color = "#757A7F"  # Text at bar end

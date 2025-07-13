@@ -22,7 +22,7 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Generate lang_stats.svg
+      - name: Generate lang_stats.png
         env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         run: |
@@ -33,6 +33,6 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git pull --rebase --autostash
-          git add lang_stats.svg
-          git diff --cached --quiet || git commit -m "Update lang_stats.svg"
+          git add lang_stats.png
+          git diff --cached --quiet || git commit -m "Update lang_stats.png"
           git push
