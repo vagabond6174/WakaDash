@@ -83,11 +83,11 @@ def plot_day_wise_summary_no_projects(stats, filename="day_wise_stats.png"):
     df = pd.DataFrame({
         'dates': dates,
         'usage': usages
-    })
+    })[::-1]
 
     text_color = "#757A7F"
     sns.set_theme(style="whitegrid")
-    colors = sns.color_palette("Set2", len(df))
+    colors = sns.color_palette("Spectral", len(df))
 
     fig, ax = plt.subplots(figsize=(10, 5))
 
