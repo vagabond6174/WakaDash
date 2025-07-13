@@ -1,11 +1,12 @@
 from src.wakatime import WakaTimeClient
 from datetime import datetime, timedelta
 from src.graph import plot_language_usage, plot_day_wise_summary_no_projects
+from src.badge import create_wakatime_badge
 
 
 waka = WakaTimeClient()
 
-# Language stats
+# Wakatime
 stats = waka.fetch_stats()
 
 plot_language_usage(
@@ -18,5 +19,8 @@ plot_language_usage(
 )
 
 # Day wise data
-# day_wise_stats = waka.fetch_day_wise_summary()
-# plot_day_wise_summary_no_projects(day_wise_stats)
+day_wise_stats = waka.fetch_day_wise_summary()
+plot_day_wise_summary_no_projects(day_wise_stats)
+
+# Wakatime badge
+create_wakatime_badge(stats['human_readable_daily_average'], stats['best_day'])
