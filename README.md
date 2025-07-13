@@ -6,7 +6,7 @@ Tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistic
 
 
 <p align="center">
-  <img src="lang_stats.png" alt="WakaTime Language Usage Chart" width="700">
+  <img src="lang_stats.png" alt="WakaTime Language Usage Chart" width="600">
 </p>
 
 

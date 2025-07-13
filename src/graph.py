@@ -131,7 +131,7 @@ def plot_day_wise_summary_no_projects(stats, filename="day_wise_stats.png"):
 
     ax.set_ylabel("Usage (%)", fontsize=12, color=text_color)
     ax.set_xlabel("")
-    ax.set_title("Day-wise Usage Summary", fontsize=14, weight='bold', pad=20, color=text_color)
+    ax.set_title("Weekly Usage Summary", fontsize=14, weight='bold', pad=20, color=text_color)
     ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: f'{y:.0f}%'))
     ax.set_ylim(0, max(usages) * 1.15 if usages else 1)
     ax.tick_params(axis='x', labelrotation=45, labelsize=10, colors=text_color)
