@@ -10,6 +10,11 @@ Tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistic
 </p>
 
 
+<p align="center">
+  <img src="day_wise_stats.png" alt="WakaTime Language Usage Chart" width="1000">
+</p>
+
+
 
 ##  Use This in Your Own Profile (Fork & Go!) 🍴
 
