@@ -1,6 +1,6 @@
 <img width="1000" height="353" alt="Wakadash (2)" src="https://github.com/user-attachments/assets/be7a3117-8b28-41d8-bccc-5c307a3292b2" />
 
----
+## WakaDash
 
 **WakaDash** - a tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistics and generates a clean horizontal bar chart (`lang_stats.svg`). You can embed this visual breakdown anywhere - from your GitHub profile README to a personal portfolio.
 
