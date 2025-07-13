@@ -55,19 +55,20 @@ def plot_language_usage(
             i,
             f"{label} ({percent:.2f}%)",
             va="center",
-            fontsize=12,
+            fontsize=13,
             color=annotation_color
         )
 
     # Set y-tick label colors
     for label in ax.get_yticklabels():
         label.set_color(label_color)
+        label.set_fontsize(13)
 
     # Add title
     ax.set_title(
         f"Languages : {start} → {end}  -  {time_spent}",
         color=title_color,
-        fontsize=13
+        fontsize=14
     )
 
     # Remove extras
