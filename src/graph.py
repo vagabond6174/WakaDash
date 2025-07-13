@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def plot_language_usage(
@@ -17,7 +18,7 @@ def plot_language_usage(
 
     bars = ax.barh(y_pos, percents, color=colors)
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(langs, color=text_color, fontdict= {'fontsize' : 13})
+    ax.set_yticklabels(langs, color=text_color, fontdict={"fontsize": 13})
     ax.invert_yaxis()
     ax.set_title(
         f"Languages : {start} → {end}  -  {time_spent}",

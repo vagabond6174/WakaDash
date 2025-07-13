@@ -1,6 +1,8 @@
 import requests
 import os
-from datetime import datetime
+import time
+from datetime import datetime, timedelta, timezone
+from collections import defaultdict
 
 
 class WakaTimeClient:
@@ -11,23 +13,47 @@ class WakaTimeClient:
         if not self.API_KEY:
             raise ValueError("WAKATIME API KEY not found!")
 
-        self._data = self._fetch_stats()
+    def fetch_day_wise_summary(self, days=7):
+        summaries = {}
 
-        self.start_date = datetime.strptime(self._data["start"], "%Y-%m-%dT%H:%M:%SZ")
-        self.end_date = datetime.strptime(self._data["end"], "%Y-%m-%dT%H:%M:%SZ")
-        self.total_time_spent = self._data[
-            "human_readable_total_including_other_language"
-        ]
+        for i in range(days):
+            date = (datetime.now(timezone.utc) - timedelta(days=i + 1)).strftime(
+                "%Y-%m-%d"
+            )
+            url = f"https://wakatime.com/api/v1/users/current/durations?date={date}&api_key={self.API_KEY}"
 
-    def _fetch_stats(self):
+            try:
+                response = requests.get(url)
+                response.raise_for_status()
+                sessions = response.json().get("data", [])
+
+                project_totals = defaultdict(float)
+                for s in sessions:
+                    project = s.get("project")
+                    duration = s.get("duration", 0)
+                    if project and duration:  # Skip if None or 0
+                        project_totals[project] += duration
+
+                summaries[date] = dict(project_totals)
+                print(f"Fetched: {date}")
+
+            except Exception as e:
+                print(f"Error fetching {date}: {e}")
+                summaries[date] = {}
+
+            print(date)
+            time.sleep(1)
+        return summaries
+
+    def fetch_stats(self):
         response = requests.get(
             f"https://wakatime.com/api/v1/users/current/stats/{self.STATS_RANGE}?api_key={self.API_KEY}"
         )
         response.raise_for_status()
         return response.json()["data"]
 
-    def languages(self, limit=5):
+    def languages(self, data, limit=5):
         return [
             (lang["name"], lang["percent"], lang["text"])
-            for lang in self._data.get("languages", [])[:limit]
+            for lang in data.get("languages", [])[:limit]
         ]
