@@ -33,7 +33,15 @@ Click the "Fork" button in the top right of this page and fork it to your accoun
 
 2. Enable workflows if prompted
 
-3. The action will now run automatically once per day, and generate a new lang_stats.svg
+<img width="757" height="466" alt="image" src="https://github.com/user-attachments/assets/61190920-0666-4dd1-8aeb-c464dfc2b233" />
+
+<img width="756" height="462" alt="image" src="https://github.com/user-attachments/assets/806885c2-dbeb-4118-887e-17eb286ea649" />
+
+
+4. The action will now run automatically once per day, and generate a new lang_stats.svg
+or you can run it manually by clicking here.
+
+<img width="756" height="462" alt="image" src="https://github.com/user-attachments/assets/269c8af0-861c-4ebf-a412-de6d376e7c0a" />
 
 
 ### Step 5: Show It in Your GitHub Profile
