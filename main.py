@@ -1,6 +1,6 @@
 from src.wakatime import WakaTimeClient
 from datetime import datetime, timedelta
-from src.graph import plot_language_usage
+from src.graph import plot_language_usage,plot_day_wise_summary_no_projects
 
 
 waka = WakaTimeClient()
@@ -16,5 +16,5 @@ plot_language_usage(
 )
 
 # Day wise data
-# print(waka.fetch_day_wise_summary())
-
+day_wise_stats = waka.fetch_day_wise_summary()
+plot_day_wise_summary_no_projects(day_wise_stats)

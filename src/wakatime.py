@@ -41,7 +41,6 @@ class WakaTimeClient:
                 print(f"Error fetching {date}: {e}")
                 summaries[date] = {}
 
-            print(date)
             time.sleep(1)
         return summaries
 
