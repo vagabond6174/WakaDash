@@ -2,7 +2,7 @@
 
 ## WakaDash
 
-**WakaDash** - a tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistics and generates a clean horizontal bar chart (`lang_stats.svg`). You can embed this visual breakdown anywhere - from your GitHub profile README to a personal portfolio.
+Tool that fetches your weekly [WakaTime](https://wakatime.com/) coding statistics and generates a charts (`lang_stats.svg`). You can embed this visual breakdown anywhere - from your GitHub profile README to a personal portfolio.
 
 
 <p align="center">
