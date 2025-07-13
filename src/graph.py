@@ -1,28 +1,36 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-from matplotlib.patches import FancyBboxPatch,Rectangle, Ellipse
+from matplotlib.patches import FancyBboxPatch, Rectangle, Ellipse
 from matplotlib.ticker import FuncFormatter
+
 
 def plot_language_usage(
     start, end, time_spent, language_data, filename="lang_stats.png"
 ):
-    label_color = "#757A7F"  # Y-axis language names
-    annotation_color = "#757A7F"  # Text at bar end
-    title_color = "#757A7F"  # Title color
+    # Styling colors
+    label_color = "#757A7F"         # Y-axis label color
+    annotation_color = "#757A7F"    # Text at end of bars
+    title_color = "#757A7F"         # Title color (darker for better contrast)
 
+    # Prepare DataFrame
     df = pd.DataFrame(language_data, columns=["Language", "Percent", "Label"])
     df = df.sort_values("Percent", ascending=False).reset_index(drop=True)
 
+    # Define custom color palette
     colors = sns.color_palette("tab10", len(df))
 
+    # Set seaborn theme
     sns.set_theme(style="white")
     sns.set_color_codes("pastel")
 
-    fig, ax = plt.subplots(figsize=(7, 3))
+    # Create figure and axes
+    fig, ax = plt.subplots(figsize=(8, 4))
 
-    barplot = sns.barplot(data=df, x="Percent", y="Language", ax=ax, palette=colors)
+    # Base bar plot
+    sns.barplot(data=df, x="Percent", y="Language", ax=ax, palette=colors)
 
+    # Replace bars with rounded FancyBboxPatch
     new_patches = []
     for i, patch in enumerate(reversed(ax.patches)):
         bb = patch.get_bbox()
@@ -41,30 +49,42 @@ def plot_language_usage(
     for patch in new_patches:
         ax.add_patch(patch)
 
+    # Add value annotations to end of bars
     for i, (percent, label) in enumerate(zip(df["Percent"], df["Label"])):
         ax.text(
-            percent + 1,
-            i,
+            percent + 1, i,
             f"{label} ({percent:.2f}%)",
             va="center",
-            fontsize=13,
+            fontsize=12,
             color=annotation_color,
         )
 
-    for label in ax.get_yticklabels():
-        label.set_color(label_color)
-        label.set_fontsize(13)
+    # Style y-axis labels
+    ax.set_yticklabels(ax.get_yticklabels(), color=label_color, fontsize=12)
 
+    # Title: bold "Languages", followed by timeframe and duration
     ax.set_title(
-        f"Languages : {start} → {end}  -  {time_spent}", color=title_color, fontsize=14
+        f"$\\bf{{Languages}}$\nFrom {start} to {end} • Duration: {time_spent}",
+        color=title_color,
+        fontsize=14,
+        loc="left",
+        pad=20,
+        fontweight = 'bold',
     )
 
+    # Remove axis ticks and labels
     ax.set_xlabel("")
     ax.set_ylabel("")
     ax.set_xticks([])
     ax.tick_params(axis="both", which="both", length=0)
+
+    # Extend x-limit slightly to avoid clipping annotations
+    ax.set_xlim(0, max(df["Percent"]) + 10)
+
+    # Remove borders
     sns.despine(left=True, bottom=True)
 
+    # Final layout and save
     plt.tight_layout()
     plt.savefig(filename, transparent=True)
     plt.close()
@@ -80,10 +100,7 @@ def plot_day_wise_summary_no_projects(stats, filename="day_wise_stats.png"):
     else:
         usages = [(u / total_usage) * 100 for u in raw_usages]
 
-    df = pd.DataFrame({
-        'dates': dates,
-        'usage': usages
-    })[::-1]
+    df = pd.DataFrame({"dates": dates, "usage": usages})[::-1]
 
     text_color = "#757A7F"
     sns.set_theme(style="whitegrid")
@@ -91,51 +108,85 @@ def plot_day_wise_summary_no_projects(stats, filename="day_wise_stats.png"):
 
     fig, ax = plt.subplots(figsize=(10, 5))
 
-    df['hue'] = df['dates']
-    bars = sns.barplot(data=df, x='dates', y='usage', hue='hue', palette=colors, ax=ax, legend=False)
+    df["hue"] = df["dates"]
+    bars = sns.barplot(
+        data=df, x="dates", y="usage", hue="hue", palette=colors, ax=ax, legend=False
+    )
 
     bar_info = []
     for patch in bars.patches:
         bb = patch.get_bbox()
-        bar_info.append({
-            'x': bb.xmin,
-            'y': bb.ymin,
-            'width': bb.width,
-            'height': bb.height,
-            'color': patch.get_facecolor()
-        })
+        bar_info.append(
+            {
+                "x": bb.xmin,
+                "y": bb.ymin,
+                "width": bb.width,
+                "height": bb.height,
+                "color": patch.get_facecolor(),
+            }
+        )
     for patch in bars.patches[:]:
         patch.remove()
 
     # Draw custom rounded bars with shadow
     for info in bar_info:
-        bar_height = info['height']
-        width = info['width']
-        x = info['x']
-        y = info['y']
-        color = info['color']
+        bar_height = info["height"]
+        width = info["width"]
+        x = info["x"]
+        y = info["y"]
+        color = info["color"]
 
         ellipse_height = width * 40
         radius = ellipse_height / 2
 
         # Shadow
-        ax.add_patch(Rectangle((x + 0.05, y - 0.2), width, bar_height - radius, color='gray', alpha=0.3, zorder=0))
-        ax.add_patch(Ellipse((x + width / 2 + 0.05, y + bar_height - radius - 0.2),
-                             width=width, height=ellipse_height,
-                             color='gray', alpha=0.3, zorder=0))
+        ax.add_patch(
+            Rectangle(
+                (x + 0.05, y - 0.2),
+                width,
+                bar_height - radius,
+                color="gray",
+                alpha=0.3,
+                zorder=0,
+            )
+        )
+        ax.add_patch(
+            Ellipse(
+                (x + width / 2 + 0.05, y + bar_height - radius - 0.2),
+                width=width,
+                height=ellipse_height,
+                color="gray",
+                alpha=0.3,
+                zorder=0,
+            )
+        )
 
         # Bar
-        ax.add_patch(Rectangle((x, y), width, bar_height - radius, color=color, linewidth=0, zorder=1))
-        ax.add_patch(Ellipse((x + width / 2, y + bar_height - radius), width=width,
-                             height=ellipse_height, color=color, linewidth=0, zorder=2))
+        ax.add_patch(
+            Rectangle(
+                (x, y), width, bar_height - radius, color=color, linewidth=0, zorder=1
+            )
+        )
+        ax.add_patch(
+            Ellipse(
+                (x + width / 2, y + bar_height - radius),
+                width=width,
+                height=ellipse_height,
+                color=color,
+                linewidth=0,
+                zorder=2,
+            )
+        )
 
     ax.set_ylabel("Usage (%)", fontsize=12, color=text_color)
     ax.set_xlabel("")
-    ax.set_title("Weekly Usage Summary", fontsize=14, weight='bold', pad=20, color=text_color)
-    ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: f'{y:.0f}%'))
+    ax.set_title(
+        "Weekly Usage Summary", fontsize=14, weight="bold", pad=20, color=text_color
+    )
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: f"{y:.0f}%"))
     ax.set_ylim(0, max(usages) * 1.15 if usages else 1)
-    ax.tick_params(axis='x', labelrotation=45, labelsize=10, colors=text_color)
-    ax.tick_params(axis='y', labelsize=10, colors=text_color)
+    ax.tick_params(axis="x", labelrotation=45, labelsize=10, colors=text_color)
+    ax.tick_params(axis="y", labelsize=10, colors=text_color)
 
     for spine in ax.spines.values():
         spine.set_color(text_color)
@@ -144,5 +195,3 @@ def plot_day_wise_summary_no_projects(stats, filename="day_wise_stats.png"):
 
     plt.tight_layout()
     plt.savefig(filename, dpi=300, transparent=True)
-
-
